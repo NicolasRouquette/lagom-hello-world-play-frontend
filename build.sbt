@@ -11,9 +11,7 @@ organization in ThisBuild := "com.example"
 version in ThisBuild := "1.0-SNAPSHOT"
 
 // the Scala version that will be used for cross-compiled libraries
-scalaVersion in ThisBuild := "2.13.1"
-
-lagomServiceGatewayAddress in ThisBuild := "localhost"
+scalaVersion in ThisBuild := "2.12.9"
 
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.3.3" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.1.1" % Test
@@ -74,7 +72,7 @@ lazy val `frontend` = (project in file("frontend"))
       lagomScaladslAkkaDiscovery,
       lagomScaladslTestKit,
       macwire,
-      "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test,
+      "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test,
 
       // https://github.com/webjars/bootstrap
       // https://github.com/webjars/bootstrap/releases
@@ -82,7 +80,7 @@ lazy val `frontend` = (project in file("frontend"))
 
       // https://github.com/webjars/webjars-play
       // https://github.com/webjars/webjars-play/releases
-      "org.webjars" %% "webjars-play" % "2.8.0",
+      "org.webjars" %% "webjars-play" % "2.7.3",
 
       // https://github.com/webjars/foundation
       // https://github.com/webjars/foundation/releases

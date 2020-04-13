@@ -1,6 +1,5 @@
 package com.example.helloworld.impl
 
-import akka.cluster.sharding.typed.scaladsl.Entity
 import com.lightbend.lagom.scaladsl.api.ServiceLocator
 import com.lightbend.lagom.scaladsl.api.ServiceLocator.NoServiceLocator
 import com.lightbend.lagom.scaladsl.persistence.cassandra.CassandraPersistenceComponents
@@ -37,12 +36,6 @@ abstract class HelloWorldApplication(context: LagomApplicationContext)
   // Register the JSON serializer registry
   override lazy val jsonSerializerRegistry: JsonSerializerRegistry = HelloWorldSerializerRegistry
 
-  // Initialize the sharding of the Aggregate. The following starts the aggregate Behavior under
-  // a given sharding entity typeKey.
-  clusterSharding.init(
-    Entity(HelloWorldState.typeKey)(
-      entityContext => HelloWorldBehavior.create(entityContext)
-    )
-  )
-
+  // Register the Hello World persistent entity
+  persistentEntityRegistry.register(wire[HelloWorldEntity])
 }

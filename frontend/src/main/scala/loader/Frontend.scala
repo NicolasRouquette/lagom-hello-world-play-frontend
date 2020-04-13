@@ -33,16 +33,18 @@ abstract class Frontend(
   override lazy val environment: Environment = context.environment
 
   override lazy val configuration: Configuration = {
-    Configuration.load(environment).withFallback(context.initialConfiguration)
+    Configuration.load(environment) ++ context.initialConfiguration
   }
 
   override lazy val applicationLifecycle: ApplicationLifecycle = context.lifecycle
 
   implicit override lazy val executionContext: ExecutionContext = actorSystem.dispatcher
 
-  override lazy val serviceInfo: ServiceInfo = ServiceInfo.apply(
+  override lazy val serviceInfo: ServiceInfo = ServiceInfo(
     "frontend",
-    immutable.Seq(ServiceAcl.forPathRegex("(?!/api/).*"))
+    Map(
+      "frontend" -> immutable.Seq(ServiceAcl.forPathRegex("(?!/api/).*"))
+    )
   )
 
   implicit override val assetsFinder: AssetsFinder = assetsMetadata.finder
