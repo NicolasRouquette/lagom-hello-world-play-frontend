@@ -8,7 +8,7 @@
     <encoder>
       <charset>UTF-8</charset>
       <pattern>
-        %d{yyyy-MM-dd HH:mm:ss} %highlight(%-5level) %cyan(%logger{36}) %magenta(%X{akkaSource}) %msg%n
+        %d{yyyy-MM-dd HH:mm:ss} %-5level %logger %X{akkaSource} %msg%n
       </pattern>
     </encoder>
   </appender>
@@ -18,7 +18,7 @@
     <encoder>
       <charset>UTF-8</charset>
       <pattern>
-        %d{yyyy-MM-dd HH:mm:ss} %highlight(%-5level) %cyan(%logger{36}) %magenta(%X{akkaSource}) %msg%n
+        %d{yyyy-MM-dd HH:mm:ss} %highlight(%-5level) %cyan(%logger) %magenta(%X{akkaSource}) %msg%n
       </pattern>
     </encoder>
   </appender>
@@ -31,11 +31,17 @@
     <appender-ref ref="STDOUT" />
   </appender>
 
-  <logger name="play" level="INFO" />
-  <logger name="application" level="DEBUG" />
+  <logger name="com.lightbend" level="TRACE" />
+  <logger name="play" level="TRACE" />
+  <logger name="akka" level="TRACE" />
+  <logger name="play.shaded.ahc.org.asynchttpclient.netty.channel.DefaultChannelPool" level="WARN" />
+  <logger name="play.shaded.ahc.io.netty.channel.nio.NioEventLoop" level="WARN" />
+  <logger name="io.netty.channel.nio.NioEventLoop" level="WARN" />
+  <logger name="javax.management.mbeanserver" level="WARN" />
+  <logger name="io.github.classgraph" level="WARN"/>
 
-  <root level="WARN">
-    <!--<appender-ref ref="ASYNCFILE" />-->
+  <root level="TRACE">
+    <appender-ref ref="ASYNCFILE" />
     <appender-ref ref="ASYNCSTDOUT" />
   </root>
 

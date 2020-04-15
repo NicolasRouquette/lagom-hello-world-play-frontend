@@ -13,7 +13,9 @@ version in ThisBuild := "1.0-SNAPSHOT"
 // the Scala version that will be used for cross-compiled libraries
 scalaVersion in ThisBuild := "2.13.1"
 
-lagomServiceGatewayAddress in ThisBuild := "localhost"
+// Implementation of the service gateway: "akka-http" (default) or "netty"
+// This problem occurs with either implementation.
+lagomServiceGatewayImpl in ThisBuild := "akka-http"
 
 val macwire = "com.softwaremill.macwire" %% "macros" % "2.3.3" % "provided"
 val scalaTest = "org.scalatest" %% "scalatest" % "3.1.1" % Test
